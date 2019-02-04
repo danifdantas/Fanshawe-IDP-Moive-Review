@@ -5,6 +5,15 @@
   text-decoration: none;
 }
 
+body {
+  background: #f5f4f4;
+  color: #505050;
+  height: 100%;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  line-height: 1.5;
+}
+
 #movies {
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +50,7 @@ li {
   text-decoration: none;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  padding: 7px 15px;
+  padding: 7px 21px;
   color: white;
   text-transform: uppercase;
   transition: all 0.5s ease;
@@ -88,10 +97,49 @@ h1 {
 
 .btn {
   border-radius: 50px;
-  padding: 7px 15px;
+  padding: 7px 28px;
   background-color: #1c7f93;
   text-decoration: none;
   color: white;
   text-transform: uppercase;
   margin-bottom: 20px !important;
+}
+
+#admin-dash {
+  padding: 4rem;
+}
+
+#container {
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  background-color: #e0dfdf;
+  border-radius: 20px;
+}
+
+.login-title {
+  background-color: aquamarine;
+  margin-top: 50px;
+}
+
+.message {
+  color: red;
+  font-size: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input,
+label {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+input {
+  line-height: 30px;
+  font-size: 14px;
 }
