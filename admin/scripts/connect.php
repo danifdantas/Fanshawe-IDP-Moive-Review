@@ -2,7 +2,7 @@
 
 $db_dsn = array(
   'host' => 'localhost',
-  'dbname' => 'db_movies_class',
+  'dbname' => 'db_movies_2',
   'charset' => 'utf8'
 );
 // This is the db credentials
