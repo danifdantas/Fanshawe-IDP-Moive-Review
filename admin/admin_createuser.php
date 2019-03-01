@@ -54,9 +54,6 @@ if(filter_has_var(INPUT_POST,'submit')) {
     <label for="email">Email:</label>
      <input type="email" id="email" name="email" value="">
 
-    <!-- <label for="password">Password:</label>
-    <input type="text" id="password" name="password" value=""> -->
-
     <button class="btn" type="submit" name="submit">Create User</button>
   </form>
 </body>

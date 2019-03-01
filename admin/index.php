@@ -5,7 +5,9 @@ greeting();
 $message = greeting();
 $date= date_create($_SESSION['user_login_time']);
 $readable_date = ( date_format($date, ' l jS F Y \a\t g:ia')); 
-            
+if(isset($_GET['success'])) {
+  echo "<h3 style='color:red;'>This: <span style='color:blue;'>".$_GET['success']."</span> is the system generated password for the new user. Make sure to copy it to be able to login and change it later.</h3>";
+}            
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,14 +23,14 @@ $readable_date = ( date_format($date, ' l jS F Y \a\t g:ia'));
   <h1>Admin Dashboard</h1>
   <h2>Welcome <?php echo $_SESSION['user_name'];?></h2>
   <h3><?php echo $message;  ?></h3>
-  <?php 
-      ?>
+  
   <p>Your Last Login Was on <?php echo $readable_date;?></p>
   <p>This is the admin dashboard page</p>
+  
   <nav>
     <ul>
       <li><a href="admin_createuser.php">Create User</a></li>
-      <li><a href="#">Edit User</a></li>
+      <li><a href="admin_edituser.php">Edit User</a></li>
       <li><a href="#">Delete User</a></li>
       <li><a href="scripts/caller.php?caller_id=logout">Sign Out</a></li>
     </ul>

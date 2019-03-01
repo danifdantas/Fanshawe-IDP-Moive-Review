@@ -14,18 +14,31 @@ function login($username, $password, $ip)
       ':username'=> $username
     )
   );
- 
+  
   //Check user password
   $check_user_psw = "SELECT user_pass FROM tbl_user WHERE user_name = :username";
   $user_psw = $pdo->prepare($check_user_psw);
   $user_psw->execute(
     array(
-      ':username'=> $username,
+      ':username'=> $username
     )
   );
   $user_pass = $user_psw->fetchColumn();
+  // dd($user_pass);
   $hash_pass = password_verify($password, $user_pass);
-  var_dump($hash_pass);
+
+  //Check user login time
+  $check_user_login_time_query = "SELECT user_login_time from tbl_user WHERE user_name = :username";
+  $user_login_time = $pdo->prepare($check_user_login_time_query);
+  $user_login_time->execute(
+    array(
+      ':username'=> $username,
+    )
+    );
+  $user_login_time = $user_login_time->fetchColumn();
+  // var_dump($user_login_time);die;  
+  
+  
   //IF PASSWORD IS CORRECT
   if($hash_pass)
   {
@@ -83,10 +96,15 @@ function login($username, $password, $ip)
                       ":username" => $username
                     )
                   );
-              redirect_to('index.php');
+          if($user_login_time === NULL) 
+          {
+              redirect_to('../admin/admin_edituser.php');
+          } else {
+            redirect_to('index.php');
           }
-        }
-        else
+       }
+    }
+     else
         { 
           
           //INCREMENT USER FAILED LOGIN
@@ -131,20 +149,10 @@ function login($username, $password, $ip)
               )
             );
             
-          // BLOCK USER WITH USER_ACTIVE VALUE I was using the user_active value before I found the query above. I left the code here so I can refer to it later
-          // $set_user_active = "UPDATE tbl_user SET user_active = 1 WHERE user_name = :username";
-          //   $set_user_active = $pdo->prepare($set_user_active);
-          //   $set_user_active->execute(
-          //       array(
-          //       ":username" => $username
-          //     )
-          //   );
-          //   redirect_to('blocked.php');
-          // }  
-
+         
           $block = $block_user->fetch(PDO::FETCH_ASSOC);
           // var_dump($block, $password);die;
-            if($block["denied"] == 1)
+            if($block["denied"] === 1)
             {
               redirect_to('blocked.php');
             }  
